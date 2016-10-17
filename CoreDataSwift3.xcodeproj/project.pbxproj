@@ -13,6 +13,8 @@
 		02C4ACCD1DB48455003F7F54 /* CoreDataSwift3.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 02C4ACCB1DB48455003F7F54 /* CoreDataSwift3.xcdatamodeld */; };
 		02C4ACCF1DB48455003F7F54 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02C4ACCE1DB48455003F7F54 /* Assets.xcassets */; };
 		02C4ACD21DB48455003F7F54 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02C4ACD01DB48455003F7F54 /* LaunchScreen.storyboard */; };
+		02C4ACDD1DB48AEE003F7F54 /* Student+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C4ACDB1DB48AEE003F7F54 /* Student+CoreDataClass.swift */; };
+		02C4ACDE1DB48AEE003F7F54 /* Student+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C4ACDC1DB48AEE003F7F54 /* Student+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		02C4ACCE1DB48455003F7F54 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		02C4ACD11DB48455003F7F54 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		02C4ACD31DB48455003F7F54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		02C4ACDB1DB48AEE003F7F54 /* Student+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Student+CoreDataClass.swift"; sourceTree = "<group>"; };
+		02C4ACDC1DB48AEE003F7F54 /* Student+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Student+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +44,8 @@
 		02C4ACB81DB48455003F7F54 = {
 			isa = PBXGroup;
 			children = (
+				02C4ACDB1DB48AEE003F7F54 /* Student+CoreDataClass.swift */,
+				02C4ACDC1DB48AEE003F7F54 /* Student+CoreDataProperties.swift */,
 				02C4ACC31DB48455003F7F54 /* CoreDataSwift3 */,
 				02C4ACC21DB48455003F7F54 /* Products */,
 			);
@@ -141,8 +147,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				02C4ACC71DB48455003F7F54 /* ViewController.swift in Sources */,
+				02C4ACDD1DB48AEE003F7F54 /* Student+CoreDataClass.swift in Sources */,
 				02C4ACCD1DB48455003F7F54 /* CoreDataSwift3.xcdatamodeld in Sources */,
 				02C4ACC51DB48455003F7F54 /* AppDelegate.swift in Sources */,
+				02C4ACDE1DB48AEE003F7F54 /* Student+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
