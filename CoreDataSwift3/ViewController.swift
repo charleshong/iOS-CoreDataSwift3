@@ -32,7 +32,44 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func showAlert(textToShow: String) {
+        let alertController = UIAlertController(title: "Thing To Save", message: textToShow, preferredStyle: .alert)
+        
+        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(defaultAction)
+        
+        present(alertController, animated: true, completion: nil)
+
+    }
+    
+    func saveToTextFile() {
+        
+        let directories = NSSearchPathForDirectoriesInDomains(.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
+        
+        if let documents = directories.first {
+            if let urlDocuments = NSURL(string: documents) {
+                let urlStudents = urlDocuments.appendingPathComponent("students.plst")
+                print("File Path: ")
+                print(urlStudents)
+                
+                let student = [name.text!, compid.text!] as NSArray!
+                
+                student?.write(toFile: urlStudents!.path, atomically: true)
+                
+               
+            }
+        }
+        
+    }
+
+    
     @IBAction func saveStudent(_ sender: UIButton){
+        
+        // Setting Defaults (like shared preferences)
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(name.text!, forKey: "name")
+        
+        saveToTextFile()
         let context = getContext()
         
         //retrieve the entity that we just created
@@ -60,7 +97,34 @@ class ViewController: UIViewController {
         return appDelegate.persistentContainer.viewContext
     }
     
+    func printFromTextFile() {
+        
+        let directories = NSSearchPathForDirectoriesInDomains(.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
+        
+        if let documents = directories.first {
+            if let urlDocuments = NSURL(string: documents) {
+                let urlStudents = urlDocuments.appendingPathComponent("students.plst")
+        
+                let loadedStudents = NSArray(contentsOf: urlStudents!)
+                if let students = loadedStudents {
+                    print(students)
+                }
+            }
+        }
+
+
+    }
+    
     @IBAction func printStudents(_ sender: UIButton) {
+        
+        //Loading defaults
+        let userDefaults = UserDefaults.standard
+        
+        let currentName = userDefaults.object(forKey: "name") as! String
+        
+        print("From Defaults: " + currentName)
+        
+        printFromTextFile()
         let fetchRequest: NSFetchRequest<Student> = Student.fetchRequest()
         
         do {
