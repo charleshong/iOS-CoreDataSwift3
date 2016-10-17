@@ -44,22 +44,32 @@ class ViewController: UIViewController {
     
     func saveToTextFile() {
         
-        let directories = NSSearchPathForDirectoriesInDomains(.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
+        let fileName = "students.txt"
+        var filePath = ""
         
-        if let documents = directories.first {
-            if let urlDocuments = NSURL(string: documents) {
-                let urlStudents = urlDocuments.appendingPathComponent("students.plst")
-                print("File Path: ")
-                print(urlStudents)
-                
-                let student = [name.text!, compid.text!] as NSArray!
-                
-                student?.write(toFile: urlStudents!.path, atomically: true)
-                
-               
-            }
+        // Fine documents directory on device
+        let dirs : [String] = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.allDomainsMask, true)
+        
+        if dirs.count > 0 {
+            let dir = dirs[0] //documents directory
+            filePath = dir.appending("/" + fileName)
+            print("Local path = \(filePath)")
+        } else {
+            print("Could not find local directory to store file")
+            return
         }
         
+        // Set the contents
+        let fileContentToWrite = name.text! + " " + compid.text!
+        
+        do {
+            // Write contents to file
+            try fileContentToWrite.write(toFile: filePath, atomically: false, encoding: String.Encoding.utf8)
+        }
+        catch let error as NSError {
+            print("An error took place: \(error)")
+        }
+                
     }
 
     
@@ -99,20 +109,31 @@ class ViewController: UIViewController {
     
     func printFromTextFile() {
         
-        let directories = NSSearchPathForDirectoriesInDomains(.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
+        let fileName = "students.txt"
+        var filePath = ""
         
-        if let documents = directories.first {
-            if let urlDocuments = NSURL(string: documents) {
-                let urlStudents = urlDocuments.appendingPathComponent("students.plst")
+        // Fine documents directory on device
+        let dirs : [String] = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.allDomainsMask, true)
         
-                let loadedStudents = NSArray(contentsOf: urlStudents!)
-                if let students = loadedStudents {
-                    print(students)
-                }
-            }
+        if dirs.count > 0 {
+            let dir = dirs[0] //documents directory
+            filePath = dir.appending("/" + fileName)
+            print("Local path = \(filePath)")
+        } else {
+            print("Could not find local directory to store file")
+            return
         }
-
-
+        
+        
+        do {
+            // Read file content
+            let contentFromFile = try NSString(contentsOfFile: filePath, encoding: String.Encoding.utf8.rawValue)
+            print(contentFromFile)
+        }
+        catch let error as NSError {
+            print("An error took place: \(error)")
+        }
+        
     }
     
     @IBAction func printStudents(_ sender: UIButton) {
